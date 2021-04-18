@@ -1,17 +1,24 @@
 package com.example.chessAPI.registration;
 
+import com.example.chessAPI.models.Account;
+import com.example.chessAPI.repositories.AccountRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping(value = "/register")
+import javax.validation.Valid;
+
+@RestController
+@RequestMapping("registration")
 public class RegistrationController {
-    public String register(@RequestParam(value="login") String login,
-                         @RequestParam(value="password") String password,
-                         @RequestParam(value="matchingPassowrd") String matchingPassword,
-                         @RequestParam(value="nick") String nick){
 
+    @Autowired
+    AccountRepository accountRepository;
 
+    @PostMapping
+    public void register(@Valid @RequestBody Account account){
+        accountRepository.save(account);
     }
 }
