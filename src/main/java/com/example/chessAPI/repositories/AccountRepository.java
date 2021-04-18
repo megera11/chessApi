@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component("accountRepository")
+@Component
 public interface AccountRepository extends JpaRepository<Account,Long> {
 
     List<Account> findAllByLogin(String login);
