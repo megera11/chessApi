@@ -1,5 +1,6 @@
 package com.example.chessAPI;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,7 +14,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/registration").permitAll();
+                .antMatchers(HttpMethod.POST,"/registration").permitAll();
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
