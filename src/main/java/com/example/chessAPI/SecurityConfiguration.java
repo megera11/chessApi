@@ -13,7 +13,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("registration").permitAll();
+                .antMatchers("/registration").permitAll();
 
         http.csrf().disable();
         http.headers().frameOptions().disable();
