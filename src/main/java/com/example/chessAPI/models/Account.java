@@ -34,7 +34,7 @@ public class Account {
 
     @NotNull
     @NotEmpty
-    @UniqueLogin
+    @UniqueLogin(message = "login exists")
     @Getter
     @Setter
     private String login;
@@ -54,7 +54,7 @@ public class Account {
 
     @NotNull
     @NotEmpty
-    @UniqueNick
+    @UniqueNick(message="nick exists")
     @Getter
     @Setter
     private String nick;
