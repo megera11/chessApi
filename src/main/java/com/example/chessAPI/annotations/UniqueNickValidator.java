@@ -15,4 +15,6 @@ public class UniqueNickValidator implements ConstraintValidator<UniqueNick, Stri
     public boolean isValid(String value, ConstraintValidatorContext context) {
         return accountRepository.findAllByNick(value).isEmpty();
     }
+
+
 }
