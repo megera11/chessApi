@@ -1,26 +1,27 @@
-package com.example.chessAPI.registration;
+package com.example.chessAPI.controllers;
 
 import com.example.chessAPI.models.Account;
 import com.example.chessAPI.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("registration")
-public class RegistrationController {
+@RequestMapping("/api")
+public class AccountController {
 
     @Autowired
-    AccountRepository accountRepository;
+    private AccountRepository accountRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @PostMapping
+    @PostMapping("/registration")
     @ResponseStatus(value= HttpStatus.OK)
     public void register(@Valid @RequestBody Account account){
+        account.setPassword(bCryptPasswordEncoder.encode(account.getPassword()));
         accountRepository.save(account);
     }
 }

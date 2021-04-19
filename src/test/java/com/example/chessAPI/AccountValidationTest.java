@@ -1,9 +1,8 @@
 package com.example.chessAPI;
 
 import com.example.chessAPI.models.Account;
-import com.example.chessAPI.registration.RegistrationController;
+import com.example.chessAPI.controllers.AccountController;
 import com.example.chessAPI.repositories.AccountRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,12 +14,11 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(RegistrationController.class)
+@WebMvcTest(AccountController.class)
 public class AccountValidationTest {
     @Autowired
     MockMvc mvc;
