@@ -21,8 +21,8 @@ import javax.validation.constraints.NotEmpty;
 @EntityListeners(AuditingEntityListener.class)
 @Matches(field="password",verifyField = "confirmedPassword")
 public class Account {
-    public Account(String login, String password,String confirmedPassword,String nick){
-        this.login=login;
+    public Account(String username, String password,String confirmedPassword,String nick){
+        this.username=username;
         this.password = password;
         this.confirmedPassword = confirmedPassword;
         this.nick = nick;
@@ -37,7 +37,7 @@ public class Account {
     @UniqueLogin
     @Getter
     @Setter
-    private String login;
+    private String username;
 
     @NotNull
     @NotEmpty

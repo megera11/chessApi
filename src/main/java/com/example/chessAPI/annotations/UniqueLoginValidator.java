@@ -16,7 +16,7 @@ public class UniqueLoginValidator implements ConstraintValidator<UniqueLogin, St
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        List<Account> list = accountRepository.findAllByLogin(value);
-        return  accountRepository.findAllByLogin(value).isEmpty();
+        List<Account> list = accountRepository.findAllByUsername(value);
+        return  accountRepository.findAllByUsername(value).isEmpty();
     }
 }

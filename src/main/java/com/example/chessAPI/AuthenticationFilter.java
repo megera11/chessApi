@@ -29,14 +29,14 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
             Account account = new ObjectMapper().readValue(request.getInputStream(), Account.class);
-            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(account.getLogin(),account.getPassword(), new ArrayList<>()));
+            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(account.getUsername(),account.getPassword(), new ArrayList<>()));
         } catch (IOException ioException) {
             throw new RuntimeException("Could not read request");
         }
     }
 
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain,Authentication authentication){
-        String token = Jwts.builder().setSubject(((Account) authentication.getPrincipal()).getLogin())
+        String token = Jwts.builder().setSubject(((Account) authentication.getPrincipal()).getUsername())
                                      .setExpiration(new Date(System.currentTimeMillis()+ 864_000_000))
                                      .signWith(SignatureAlgorithm.HS512,"beastlord".getBytes())
                                      .compact();
