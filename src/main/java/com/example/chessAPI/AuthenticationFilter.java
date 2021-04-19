@@ -22,7 +22,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     public AuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
-        setFilterProcessesUrl("api/login");
+        setFilterProcessesUrl("/api/login");
     }
 
     @Override
