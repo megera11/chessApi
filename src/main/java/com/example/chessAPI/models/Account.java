@@ -19,7 +19,7 @@ import javax.validation.constraints.NotEmpty;
 @Entity(name="Accounts")
 @Table(name = "accounts")
 @EntityListeners(AuditingEntityListener.class)
-//@Matches(field="password",verifyField = "confirmedPassword")
+@Matches(field="password",verifyField = "confirmedPassword")
 public class Account {
     public Account(String username, String password,String confirmedPassword,String nick){
         this.username=username;
@@ -34,7 +34,7 @@ public class Account {
 
     @NotNull
     @NotEmpty
-    //@UniqueLogin
+    @UniqueLogin
     @Getter
     @Setter
     private String username;
@@ -54,7 +54,7 @@ public class Account {
 
     @NotNull
     @NotEmpty
-   // @UniqueNick
+    @UniqueNick
     @Getter
     @Setter
     private String nick;
