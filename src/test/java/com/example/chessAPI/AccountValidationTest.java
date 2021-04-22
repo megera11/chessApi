@@ -5,6 +5,7 @@ import com.example.chessAPI.controllers.AccountController;
 import com.example.chessAPI.repositories.AccountRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class AccountValidationTest {
     MockMvc mvc;
     @MockBean
     AccountRepository accountRepository;
-
-
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
     @Test
@@ -50,6 +51,18 @@ public class AccountValidationTest {
 
     }
 
+
+    @Test
+    public void ehhh() throws Exception {
+       // accountRepository.save(new Account("jankos113",bCryptPasswordEncoder.encode("haslo"),bCryptPasswordEncoder.encode("haslo"),"123"));
+
+        login login = new login("jankos113","haslo");
+        mvc.perform(MockMvcRequestBuilders.post("/api/login")
+                .content(new ObjectMapper().writeValueAsString(login))
+                .contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+    }
 
 
 
